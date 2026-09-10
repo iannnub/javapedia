@@ -1,0 +1,500 @@
+:root {
+    --color-primary: #2563eb;
+    --color-primary-dark: #1d4ed8;
+    --color-primary-light: rgba(37, 99, 235, 0.1);
+    --color-background: #f8fafc;
+    --color-text: #1e293b;
+    --color-text-light: #64748b;
+    --color-border: #e2e8f0;
+    --color-success: #10b981;
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --font-sans: system-ui, -apple-system, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    min-height: 100vh;
+}
+
+.contact {
+    min-height: calc(100vh - 60px);
+    padding: 2rem 1rem;
+    display: grid;
+    place-items: center;
+}
+
+.contact__container {
+    width: 100%;
+    max-width: 56rem;
+    background-color: white;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    box-shadow: var(--shadow-md);
+}
+
+.contact__header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.header__icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    background-color: var(--color-primary-light);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 1rem;
+}
+
+.header__icon i {
+    font-size: 1.75rem;
+    color: var(--color-primary);
+}
+
+.contact__title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.contact__description {
+    color: var(--color-text-light);
+    font-size: 1rem;
+    max-width: 32rem;
+    margin: 0 auto;
+}
+
+.contact__content {
+    display: grid;
+    gap: 2rem;
+}
+
+.info__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: var(--color-text);
+}
+
+.info__items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.info__card {
+    text-decoration: none;
+    color: inherit;
+    background-color: var(--color-background);
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    transition: all 0.2s ease;
+    border: 1px solid var(--color-border);
+}
+
+.info__card:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    background-color: white;
+}
+
+.card__icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: var(--color-primary-light);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 0.75rem;
+}
+
+.card__icon i {
+    font-size: 1.25rem;
+    color: var(--color-primary);
+}
+
+.card__title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: var(--color-text);
+}
+
+.card__text {
+    color: var(--color-text-light);
+    font-size: 0.875rem;
+}
+
+a.info__card {
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+a.info__card::before {
+    content: 'Klik untuk membuka';
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(1rem);
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+a.info__card:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+a.info__card:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+a.info__card:hover .card__icon {
+    background-color: var(--color-primary-light);
+    transform: scale(1.1);
+}
+
+a.info__card:hover .card__icon i {
+    color: var(--color-primary);
+    transform: scale(1.1);
+}
+
+a.info__card:hover .card__title {
+    color: var(--color-primary);
+}
+
+/* Social Media Brand Colors */
+.info__card[href*="instagram"] {
+    --brand-color: #E4405F;
+    --brand-color-light: rgba(228, 64, 95, 0.1);
+}
+
+.info__card[href*="wa.me"] {
+    --brand-color: #25D366;
+    --brand-color-light: rgba(37, 211, 102, 0.1);
+}
+
+a.info__card {
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+a.info__card::before {
+    content: 'Klik untuk membuka';
+    position: absolute;
+    bottom: 0.5rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(1rem);
+    background-color: var(--brand-color, var(--color-primary));
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 1rem;
+    font-size: 0.75rem;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+a.info__card:hover {
+    transform: translateY(-0.25rem);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-color: var(--brand-color, var(--color-primary));
+}
+
+a.info__card:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+a.info__card:hover .card__icon {
+    background-color: var(--brand-color-light, var(--color-primary-light));
+}
+
+a.info__card:hover .card__icon i {
+    color: var(--brand-color, var(--color-primary));
+    transform: scale(1.1);
+}
+
+a.info__card:hover .card__title {
+    color: var(--brand-color, var(--color-primary));
+}
+
+.info__card[href*="instagram"] .card__icon {
+    background-color: var(--brand-color-light);
+}
+
+.info__card[href*="instagram"] .card__icon i {
+    color: var(--brand-color);
+}
+
+.info__card[href*="wa.me"] .card__icon {
+    background-color: var(--brand-color-light);
+}
+
+.info__card[href*="wa.me"] .card__icon i {
+    color: var(--brand-color);
+}
+
+.contact__form {
+    width: 100%;
+}
+
+.form__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form__group {
+    margin-bottom: 1rem;
+    width: 100%;
+}
+
+.input__wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.form__input {
+    width: 100%;
+    padding: 1rem 1rem 1rem 3rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    color: var(--color-text);
+    background-color: white;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form__textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form__input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-primary-light);
+}
+
+.input__icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-light);
+    font-size: 1.25rem;
+}
+
+.form__textarea + .input__icon {
+    top: 1.5rem;
+    transform: none;
+}
+
+.form__button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: var(--color-primary);
+    color: white;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 1rem;
+}
+
+.form__button:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.button__icon {
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+}
+
+.form__button:hover .button__icon {
+    transform: translateX(2px);
+}
+
+/* Modal Styles */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    place-items: center;
+    padding: 1rem;
+    z-index: 1000;
+}
+
+.modal.show {
+    display: grid;
+}
+
+.modal__content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    max-width: 20rem;
+    width: 100%;
+    box-shadow: var(--shadow-md);
+}
+
+.modal__icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--color-success);
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    margin: 0 auto 1.5rem;
+}
+
+.modal__icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.modal__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+}
+
+.modal__text {
+    color: var(--color-text-light);
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+}
+
+.modal__button {
+    background-color: var(--color-success);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.modal__button:hover {
+    filter: brightness(1.1);
+}
+
+/* Input Error States */
+.input__wrapper--error .form__input {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+.input__wrapper--error .input__icon {
+    color: #ef4444;
+}
+
+/* Loading Animation */
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.button__icon--spinning {
+    animation: spin 1s linear infinite;
+}
+
+/* Accessibility */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .contact__container {
+        padding: 1.5rem;
+    }
+
+    .info__items {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .form__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact__title {
+        font-size: 1.5rem;
+    }
+
+    .info__title {
+        font-size: 1.125rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .contact__container {
+        padding: 1rem;
+    }
+
+    .contact {
+        padding: 1rem 0.5rem;
+    }
+
+    .form__input {
+        font-size: 0.875rem;
+    }
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}

@@ -1,0 +1,197 @@
+<?php
+$config = [
+    'site' => [
+        'name' => 'JAVAPEDIA',
+        'tagline' => 'Joki Game Terpercaya',
+        'description' => 'Platfrom boosting game terpercaya untuk PUBG Mobile dan Mobile Legends Bang Bang'
+    ]
+];
+
+$features = [
+    [
+        'icon' => 'price-tag-3',
+        'title' => 'Harga Terjangkau',
+        'description' => 'Layanan dengan harga terbaik dan kompetitif di kelasnya, dengan kualitas layanan premium.'
+    ],
+    [
+        'icon' => 'flashlight',
+        'title' => 'Proses Cepat',
+        'description' => 'Pengerjaan order dilakukan secepat mungkin dengan hasil maksimal sesuai target yang diminta.'
+    ],
+    [
+        'icon' => 'shield-check',
+        'title' => 'Aman & Terpercaya',
+        'description' => 'Keamanan akun anda adalah prioritas kami. Proses joki dilakukan dengan aman dan terpercaya.'
+    ]
+];
+
+$services = [
+    [
+        'game' => 'PUBG MOBILE',
+        'image' => 'assets/bg/pm.png',
+        'description' => 'Tempat joki Pubg Mobile terpercaya, dari rank, Misi event, Misi Royal Pass, dan banyak lainnya.',
+        'features' => [
+            ['icon' => 'trophy', 'text' => 'PAKET JOKI TIER'],
+            ['icon' => 'star', 'text' => 'JOKI PER 100 POIN [ COMING SOON ]']
+        ]
+    ],
+    [
+        'game' => 'MOBILE LEGENDS BANG BANG',
+        'image' => 'assets/bg/ml.jpg',
+        'description' => 'Tempat joki Mobile Legends terpercaya untuk rank, Classic (Winrate), Misi event, dan Misi Starlight.',
+        'features' => [
+            ['icon' => 'trophy', 'text' => 'JOKI RANK PAKET'],
+            ['icon' => 'star', 'text' => 'JOKI RANK PER BINTANG [ COMING SOON ]']
+        ]
+    ]
+];
+?>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?= htmlspecialchars($config['site']['description']) ?>">
+    <meta name="theme-color" content="#4361ee">
+    <meta property="og:title" content="<?= htmlspecialchars($config['site']['name']) ?> - <?= htmlspecialchars($config['site']['tagline']) ?>">
+    <meta property="og:description" content="<?= htmlspecialchars($config['site']['description']) ?>">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatFic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/pages/info/home.css">
+    <title><?= htmlspecialchars($config['site']['name']) ?> - <?= htmlspecialchars($config['site']['tagline']) ?></title>
+</head>
+<body>
+    
+    <main class="main" role="main">
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero__carousel">
+                <div class="hero__slide active" style="background-image: url('assets/bg/pubgBG.jpg')"></div>
+                <div class="hero__slide" style="background-image: url('assets/bg/mlBG.jpg')"></div>
+                <div class="hero__overlay"></div>
+            </div>
+            <div class="hero__content container">
+                <div class="hero__tag" role="text" data-aos="fade-down" data-aos-delay="100">
+                    <i class="fas fa-star-half-alt" aria-hidden="true"></i>
+                    <span>Promo Terbaru</span>
+                </div>
+                
+                <h1 id="hero-title" class="hero__title" data-aos="fade-right" data-aos-delay="200">
+                    Selamat Datang di <span class="hero__title-highlight"><?= htmlspecialchars($config['site']['name']) ?></span>
+                </h1>
+                
+                <div class="hero__badges" role="list" data-aos="fade-up" data-aos-delay="300">
+                    <div class="badge" role="listitem">
+                        <i class="fas fa-tags" aria-hidden="true"></i>
+                        <span>Murah</span>
+                    </div>
+                    <div class="badge" role="listitem">
+                        <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                        <span>Aman</span>
+                    </div>
+                    <div class="badge" role="listitem">
+                        <i class="fas fa-check-circle" aria-hidden="true"></i>
+                        <span>Terpercaya</span>
+                    </div>
+                </div>
+                
+                <p class="hero__description" data-aos="fade-up" data-aos-delay="200">
+                    <?= htmlspecialchars($config['site']['description']) ?>
+                </p>
+                
+                <div class="hero__actions" data-aos="fade-up" data-aos-delay="300">
+                    <a href="#services" class="btn btn--primary">
+                        <i class="fas fa-gamepad" aria-hidden="true"></i>
+                        <span>Mulai Sekarang</span>
+                    </a>
+                    <a href="#features" class="btn btn--outline">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        <span>Pelajari Lebih Lanjut</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="features__header" data-aos="fade-up" data-aos-delay="100">
+                <span class="badge badge--primary">
+                    <i class="ri-star-fill"></i>
+                    Keunggulan Kami
+                </span>
+                <h2 class="features__title">Kami menyediakan layanan joki game terbaik dengan berbagai keunggulan</h2>
+            </div>
+            
+            <div class="features__grid">
+                <?php foreach ($features as $index => $feature): ?>
+                <div class="feature-card" 
+                     data-aos="zoom-in-up" 
+                     data-aos-delay="<?= 100 + ($index * 100) ?>">
+                    <div class="feature-card__icon">
+                        <i class="ri-<?= htmlspecialchars($feature['icon']) ?>-fill"></i>
+                    </div>
+                    <h3 class="feature-card__title"><?= htmlspecialchars($feature['title']) ?></h3>
+                    <p class="feature-card__description"><?= htmlspecialchars($feature['description']) ?></p>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </section>
+
+        <section class="services" id="services">
+            <div class="container">
+                <?php foreach ($services as $index => $service): ?>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="<?= 100 + ($index * 150) ?>">
+                    <div class="service-card__content" data-aos="fade-right" data-aos-delay="<?= 200 + ($index * 150) ?>">
+                        <span class="service-card__badge"><?= htmlspecialchars($service['game']) ?></span>
+                        <h2 class="service-card__title">
+                            JASA JOKI <?= htmlspecialchars($service['game']) ?>
+                            <?php if ($service['game'] === 'MOBILE LEGENDS BANG BANG'): ?>
+                            <span class="service-card__subtitle">BANG BANG</span>
+                            <?php endif; ?>
+                        </h2>
+                        <p class="service-card__description">
+                            <?= htmlspecialchars($service['description']) ?>
+                        </p>
+                        <div class="service-card__features">
+                            <?php foreach ($service['features'] as $featureIndex => $feature): ?>
+                            <div class="feature-badge" data-aos="fade-up" data-aos-delay="<?= 300 + ($featureIndex * 100) ?>">
+                                <i class="ri-<?= htmlspecialchars($feature['icon']) ?>"></i>
+                                <?= htmlspecialchars($feature['text']) ?>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
+                        <a href="<?= str_contains($service['game'], 'PUBG') ? 'pages/infoorder/pubg.php' : 'pages/infoorder/ml.php' ?>" 
+                           class="btn btn--primary" 
+                           data-aos="fade-up" 
+                           data-aos-delay="400">
+                            Mulai Joki <?= str_contains($service['game'], 'PUBG') ? 'PUBG' : 'ML' ?>
+                            <i class="ri-arrow-right-line"></i>
+                        </a>
+                    </div>
+                    <div class="service-card__image" data-aos="fade-left" data-aos-delay="<?= 200 + ($index * 150) ?>">
+                        <img src="<?= htmlspecialchars($service['image']) ?>" alt="<?= htmlspecialchars($service['game']) ?> Character">
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 600,
+            easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
+            delay: 0
+        });
+    </script>
+    <script src="js/pages/info/home.js" defer></script>
+</body>
+</html>

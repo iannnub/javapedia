@@ -1,0 +1,27 @@
+# Operating System Files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+.DS_Store
+
+# IDE & Editor Files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Log Files
+*.log
+
+# Temporary & Cache Files
+*.tmp
+*.bak
+*.swp
+
+# Markdown and PDF files exclusion (preserve README.md)
+*.pdf
+*.md
+!README.md
