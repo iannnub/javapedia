@@ -1,20 +1,20 @@
+<?php require_once __DIR__ . '/../../config.php'; ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paket Rank PUBG Mobile</title>
-    <link rel="icon" type="image/x-icon" href="../../assets/javapedia.png" />
+    <link rel="icon" type="image/x-icon" href="<?= $BASE_URL ?>/assets/javapedia.png" />
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/assets/css/global.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-    <link rel="stylesheet" href="../../css/components/footer.css">
-    <link rel="stylesheet" href="../../css/pages/infoorder/pubg.css">
-    <link rel="stylesheet" href="../../css/pages/orders/orderan_pubg.css">
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/assets/css/footer.css">
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/css/pages/infoorder/pubg.css">
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/css/pages/orders/orderan_pubg.css">
 </head>
 <body>
-    <?php include 'config.php'; ?>
     <?php include '../../components/navbar.php'; ?>
 
     <main class="pubg-packages">
@@ -155,13 +155,22 @@
                         <div class="input-group">
                             <i class="ri-game-line input-icon" aria-hidden="true"></i>
                             <select id="paket" name="paket_pubg" class="form-control" required>
-                                <option value="" selected disabled>Pilih paket rank up</option>
-                                <option value="Tier Platinum II - ACE I = IDR 120.000">Tier Platinum II - ACE I (Rp120.000)</option>
-                                <option value="Tier Diamond V - ACE I = IDR 110.000">Tier Diamond V - ACE I (Rp110.000)</option>
-                                <option value="Tier Crown V - ACE I = IDR 80.000">Tier Crown V - ACE I (Rp80.000)</option>
-                                <option value="Tier ACE I - ACE MASTER VI = IDR 130.000">Tier ACE I - ACE MASTER VI (Rp130.000)</option>
-                                <option value="Tier ACE MASTER VI - ACE DOMINATOR XII = IDR 150.000">Tier ACE MASTER VI - ACE DOMINATOR XII (Rp150.000)</option>
-                                <option value="Tier Ace 1 - Ace Dominator 12 = IDR 225.000">Tier Ace 1 - Ace Dominator 12 (Rp225.000)</option>
+                                <option value="" disabled <?php echo empty($_GET['paket']) ? 'selected' : ''; ?>>Pilih paket rank up</option>
+                                <?php
+                                $pkgParam = $_GET['paket'] ?? '';
+                                $pkgList = [
+                                    "Tier Platinum II - ACE I = IDR 120.000" => "Tier Platinum II - ACE I (Rp120.000)",
+                                    "Tier Diamond V - ACE I = IDR 110.000" => "Tier Diamond V - ACE I (Rp110.000)",
+                                    "Tier Crown V - ACE I = IDR 80.000" => "Tier Crown V - ACE I (Rp80.000)",
+                                    "Tier ACE I - ACE MASTER VI = IDR 130.000" => "Tier ACE I - ACE MASTER VI (Rp130.000)",
+                                    "Tier ACE MASTER VI - ACE DOMINATOR XII = IDR 150.000" => "Tier ACE MASTER VI - ACE DOMINATOR XII (Rp150.000)",
+                                    "Tier Ace 1 - Ace Dominator 12 = IDR 225.000" => "Tier Ace 1 - Ace Dominator 12 (Rp225.000)"
+                                ];
+                                foreach ($pkgList as $val => $label) {
+                                    $isSelected = ($pkgParam === $val || stripos($val, $pkgParam) !== false && $pkgParam !== '') ? 'selected' : '';
+                                    echo '<option value="' . htmlspecialchars($val) . '" ' . $isSelected . '>' . htmlspecialchars($label) . '</option>';
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -188,7 +197,7 @@
         </form>
     </main>
 
-    <?php include '../../components/footer.php'; ?>
+    <?php include_once __DIR__ . '/../../includes/footer.php'; ?>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ duration: 800, once: true });
@@ -196,24 +205,40 @@
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const notification = document.getElementById('notification');
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalHtml = submitBtn.innerHTML;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Mengirim pesanan...</span>';
+            notification.className = 'notification';
+            notification.textContent = '';
+
             const formData = new FormData(this);
 
             fetch('simpan_orderan_pubg.php', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.text())
+            .then(async response => {
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok || data.status === 'error') {
+                    throw new Error(data.message || 'Terjadi kesalahan saat memproses pesanan.');
+                }
+                return data;
+            })
             .then(data => {
-                notification.textContent = 'Pesanan berhasil dikirim! Tunggu ....';
-                notification.classList.add('show');
+                notification.textContent = data.message || 'Pesanan berhasil dikirim!';
+                notification.classList.add('show', 'success');
                 this.reset();
                 setTimeout(() => {
                     window.location.href = '../infoorder/pubg.php';
-                }, 1500);
+                }, 2000);
             })
             .catch(error => {
-                notification.textContent = 'Maaf, terjadi kesalahan. Silakan coba lagi.';
-                notification.classList.add('show');
+                notification.textContent = error.message || 'Maaf, terjadi kesalahan. Silakan coba lagi.';
+                notification.classList.add('show', 'error');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalHtml;
             });
         });
     </script>

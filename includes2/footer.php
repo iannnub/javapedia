@@ -3,13 +3,7 @@
     <!-- End of Main Content -->
 
     <!-- Footer -->
-    <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-            <div class="copyright text-center my-auto">
-                <span>Copyright &copy; Javapedia 2024/2025</span>
-            </div>
-        </div>
-    </footer>
+    <?php include_once __DIR__ . '/../includes/footer.php'; ?>
     <!-- End of Footer -->
 
 </div>
@@ -36,7 +30,7 @@
             <!-- <div class="modal-body">apakah kamu ingin keluar?</div> -->
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                <a class="btn btn-primary" href="../index2.php">Keluar</a>
+                <a class="btn btn-primary" href="logout.php">Keluar</a>
             </div>
         </div>
     </div>

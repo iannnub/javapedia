@@ -25,3 +25,16 @@ ehthumbs_vista.db
 *.pdf
 *.md
 !README.md
+
+# Database exports & sensitive data
+*.sql
+
+# Backups
+*.old
+*_old.php
+
+# Test runners & audit results
+run_audit.mjs
+run_audit.bat
+audit_results.json
+screenshots/

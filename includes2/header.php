@@ -19,7 +19,9 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link href="../assets/css/global.css" rel="stylesheet">
     <link href="../assets1/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../assets/css/footer.css" rel="stylesheet">
 
 </head>
 <?php

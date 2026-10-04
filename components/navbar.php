@@ -4,15 +4,8 @@
  * @version 1.0.2
  */
 
-// BASE_URL konfigurasi otomatis (localhost vs hosting)
-$protocol = isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on" ? "https" : "http";
-$domain = $_SERVER['HTTP_HOST'];
-$isLocalhost = in_array($domain, ['localhost', '127.0.0.1']);
-$subfolder = $isLocalhost ? '/jp' : '';
-$BASE_URL = $protocol . '://' . $domain . $subfolder;
-
-// Ambil URL halaman sekarang
-$currentPage = $_SERVER['REQUEST_URI'];
+// Load dynamic configuration
+require_once __DIR__ . '/../config.php';
 
 // Navbar Configuration
 $navConfig = [
@@ -79,9 +72,6 @@ $navConfig = [
     ]
 ];
 ?>
-
-<!-- Preload Logo -->
-<link rel="preload" href="<?= htmlspecialchars($navConfig['brand']['logo']) ?>" as="image">
 
 <!-- Stylesheets -->
 <link rel="stylesheet" href="<?= $BASE_URL ?>/css/components/navbar.css">

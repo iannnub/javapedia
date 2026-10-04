@@ -1,19 +1,20 @@
+<?php require_once __DIR__ . '/../../config.php'; ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paket Rank Mobile Legends</title>
-    <link rel="icon" type="image/x-icon" href="../../assets/javapedia.png" />
+    <link rel="icon" type="image/x-icon" href="<?= $BASE_URL ?>/assets/javapedia.png" />
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/assets/css/global.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../../css/components/footer.css">
-    <link rel="stylesheet" href="../../css/pages/infoorder/ml.css">
-    <link rel="stylesheet" href="../../css/pages/orders/orderan_ml.css">
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/assets/css/footer.css">
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/css/pages/infoorder/ml.css">
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/css/pages/orders/orderan_ml.css">
 </head>
 <body>
-    <?php include 'config.php'; ?>
     <?php include '../../components/navbar.php'; ?>
 
     <main class="ml-packages">
@@ -171,17 +172,26 @@
                         <div class="input-group">
                             <i class="ri-game-line input-icon" aria-hidden="true"></i>
                             <select id="paket" name="paket_ml" class="form-control" required>
-                                <option value="" selected disabled>Pilih paket rank up</option>
-                                <option value="Rank Epic V - Legend V = IDR 150.000">Rank Epic V - Legend V = IDR 150.000</option>
-                                <option value="Rank Epic II - Mythic = IDR 250.000">Rank Epic II - Mythic = IDR 250.000</option>
-                                <option value="Rank Epic I - Mythic = IDR 210.000">Rank Epic I - Mythic = IDR 210.000</option>
-                                <option value="Rank Epic III - Mythic = IDR 275.000">Rank Epic III - Mythic = IDR 275.000</option>
-                                <option value="Rank Epic IV - Mythic = IDR 300.000">Rank Epic IV - Mythic = IDR 300.000</option>
-                                <option value="Rank Epic V - Mythic = IDR 320.000">Rank Epic V - Mythic = IDR 320.000</option>
-                                <option value="Rank Legend V - Mythic = IDR 185.000">Rank Legend V - Mythic = IDR 185.000</option>
-                                <option value="Rank Legend V - Mythic Honor = IDR 550.000">Rank Legend V - Mythic Honor = IDR 550.000</option>
-                                <option value="Rank Legend V - Mythic Glory = IDR 1.110.000">Rank Legend V - Mythic Glory = IDR 1.110.000</option>
-                                <option value="Legend V - Mythic Immortal = IDR 2.350.000">Legend V - Mythic Immortal = IDR 2.350.000</option>
+                                <option value="" disabled <?php echo empty($_GET['paket']) ? 'selected' : ''; ?>>Pilih paket rank up</option>
+                                <?php
+                                $pkgParam = $_GET['paket'] ?? '';
+                                $pkgList = [
+                                    "Rank Epic V - Legend V = IDR 150.000",
+                                    "Rank Epic II - Mythic = IDR 250.000",
+                                    "Rank Epic I - Mythic = IDR 210.000",
+                                    "Rank Epic III - Mythic = IDR 275.000",
+                                    "Rank Epic IV - Mythic = IDR 300.000",
+                                    "Rank Epic V - Mythic = IDR 320.000",
+                                    "Rank Legend V - Mythic = IDR 185.000",
+                                    "Rank Legend V - Mythic Honor = IDR 550.000",
+                                    "Rank Legend V - Mythic Glory = IDR 1.110.000",
+                                    "Legend V - Mythic Immortal = IDR 2.350.000"
+                                ];
+                                foreach ($pkgList as $pkgItem) {
+                                    $isSelected = ($pkgParam === $pkgItem || stripos($pkgItem, $pkgParam) !== false && $pkgParam !== '') ? 'selected' : '';
+                                    echo '<option value="' . htmlspecialchars($pkgItem) . '" ' . $isSelected . '>' . htmlspecialchars($pkgItem) . '</option>';
+                                }
+                                ?>
                             </select>
                         </div>
                     </div>
@@ -208,7 +218,7 @@
         </form>
     </main>
 
-    <?php include '../../components/footer.php'; ?>
+    <?php include_once __DIR__ . '/../../includes/footer.php'; ?>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -217,23 +227,39 @@
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const notification = document.getElementById('notification');
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalHtml = submitBtn.innerHTML;
+
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span>Mengirim pesanan...</span>';
+            notification.className = 'notification';
+            notification.textContent = '';
+
             const formData = new FormData(this);
             fetch('simpan_orderan_ml.php', {
                 method: 'POST',
                 body: formData
             })
-            .then(response => response.text())
+            .then(async response => {
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok || data.status === 'error') {
+                    throw new Error(data.message || 'Terjadi kesalahan saat memproses pesanan.');
+                }
+                return data;
+            })
             .then(data => {
-                notification.textContent = 'Pesanan berhasil dikirim! Tunggu ....';
-                notification.classList.add('show');
+                notification.textContent = data.message || 'Pesanan berhasil dikirim!';
+                notification.classList.add('show', 'success');
                 this.reset();
                 setTimeout(() => {
                     window.location.href = '../infoorder/ml.php';
-                }, 1500);
+                }, 2000);
             })
             .catch(error => {
-                notification.textContent = 'Maaf, terjadi kesalahan. Silakan coba lagi.';
-                notification.classList.add('show');
+                notification.textContent = error.message || 'Maaf, terjadi kesalahan. Silakan coba lagi.';
+                notification.classList.add('show', 'error');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalHtml;
             });
         });
     </script>

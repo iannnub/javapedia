@@ -8,22 +8,20 @@
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion " id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
-            
-                <img src="../assets/javapedia.png" style="width: 15%;">
-                
-                <div class="sidebar-brand-text mx-3">JAVAPEDIA<sup></sup></div>
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="admin.php">
+                <img src="../assets/javapedia.png" style="width: 25px; height: 25px; object-fit: contain;">
+                <div class="sidebar-brand-text mx-3">JAVAPEDIA</div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="beranda2.php">
+            <li class="nav-item">
+                <a class="nav-link" href="admin.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Beranda</span></a>
-            </li> -->
+                    <span>Dashboard</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">

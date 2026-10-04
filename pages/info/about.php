@@ -1,12 +1,15 @@
+<?php require_once __DIR__ . '/../../config.php'; ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tentang Kami - JAVAPEDIA</title>
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/assets/css/global.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="/jp/css/pages/info/about.css">
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/assets/css/footer.css">
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/css/pages/info/about.css">
 </head>
 <body>
     <?php include '../../components/navbar.php'; ?>
@@ -14,7 +17,7 @@
     <main class="about">
         <section class="hero">
             <div class="hero__content">
-                <img src="/jp/assets/javapedia.png" alt="Logo JAVAPEDIA" class="hero__logo" data-aos="fade-down" data-aos-delay="100">
+                <img src="<?= $BASE_URL ?>/assets/javapedia.png" alt="Logo JAVAPEDIA" class="hero__logo" data-aos="fade-down" data-aos-delay="100">
                 <h1 class="hero__title" data-aos="fade-left" data-aos-delay="150">JAVAPEDIA</h1>
                 <p class="hero__subtitle" data-aos="fade-right" data-aos-delay="200">Platform Joki Game #1 di Indonesia</p>
                 <p class="hero__description" data-aos="fade-left" data-aos-delay="250">Tingkatkan Rank Anda dengan Jaminan Aman & Terpercaya</p>
@@ -139,7 +142,8 @@
         </section>
     </main>
 
+    <?php include_once __DIR__ . '/../../includes/footer.php'; ?>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="/jp/js/pages/info/about.js"></script>
+    <script src="<?= $BASE_URL ?>/js/pages/info/about.js"></script>
 </body>
 </html>

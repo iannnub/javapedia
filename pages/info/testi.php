@@ -1,10 +1,6 @@
 <?php
-// Konfigurasi BASE_URL
-$protocol = isset($_SERVER["HTTPS"]) && $_SERVER["HTTPS"] === "on" ? "https" : "http";
-$domain = $_SERVER['HTTP_HOST'];
-$isLocalhost = in_array($domain, ['localhost', '127.0.0.1']);
-$subfolder = $isLocalhost ? '/jp' : '';
-$BASE_URL = $protocol . '://' . $domain . $subfolder;
+// Load dynamic configuration
+require_once __DIR__ . '/../../config.php';
 
 // Konfigurasi pagination
 $page = isset($_GET['page']) ? max(1, (int)$_GET['page']) : 1;
@@ -19,9 +15,9 @@ if (!$testiDir || !is_dir($testiDir)) {
 }
 
 // Ambil gambar dari folder
-$images = glob($testiDir . '/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
+$images = glob($testiDir . '/*.{jpg,jpeg,png,gif,webp}', GLOB_BRACE) ?: [];
 $totalImages = count($images);
-$totalPages = ceil($totalImages / $perPage);
+$totalPages = max(1, (int)ceil($totalImages / $perPage));
 
 $page = min($page, $totalPages);
 $start = ($page - 1) * $perPage;
@@ -33,6 +29,9 @@ $currentImages = array_slice($images, $start, $perPage);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Testimonial - JAVAPEDIA</title>
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/assets/css/global.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/assets/css/footer.css">
     <link rel="stylesheet" href="<?= $BASE_URL ?>/css/pages/info/testi.css">
     <link rel="icon" type="image/x-icon" href="<?= $BASE_URL ?>/assets/javapedia.png">
 
@@ -72,6 +71,8 @@ $currentImages = array_slice($images, $start, $perPage);
         </div>
         <?php endif; ?>
     </main>
+
+    <?php include_once __DIR__ . '/../../includes/footer.php'; ?>
 
     <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

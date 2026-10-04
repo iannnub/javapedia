@@ -24,8 +24,17 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.disabled = true;
         
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            const formData = new FormData(form);
+            const response = await fetch('process_contact.php', {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json().catch(() => ({}));
+
+            if (!response.ok || result.status === 'error') {
+                throw new Error(result.message || 'Gagal mengirim pesan.');
+            }
             
             // Show success modal
             modal.classList.add('show');
@@ -35,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
         } catch (error) {
             console.error('Error:', error);
-            alert('Maaf, terjadi kesalahan. Silakan coba lagi.');
+            alert(error.message || 'Maaf, terjadi kesalahan. Silakan coba lagi.');
             
         } finally {
             // Reset button state

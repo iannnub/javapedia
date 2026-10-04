@@ -28,7 +28,7 @@ $features = [
 $services = [
     [
         'game' => 'PUBG MOBILE',
-        'image' => 'assets/bg/pm.png',
+        'image' => $BASE_URL . '/assets/bg/pm.png',
         'description' => 'Tempat joki Pubg Mobile terpercaya, dari rank, Misi event, Misi Royal Pass, dan banyak lainnya.',
         'features' => [
             ['icon' => 'trophy', 'text' => 'PAKET JOKI TIER'],
@@ -37,7 +37,7 @@ $services = [
     ],
     [
         'game' => 'MOBILE LEGENDS BANG BANG',
-        'image' => 'assets/bg/ml.jpg',
+        'image' => $BASE_URL . '/assets/bg/ml.jpg',
         'description' => 'Tempat joki Mobile Legends terpercaya untuk rank, Classic (Winrate), Misi event, dan Misi Starlight.',
         'features' => [
             ['icon' => 'trophy', 'text' => 'JOKI RANK PAKET'],
@@ -47,33 +47,11 @@ $services = [
 ];
 ?>
 
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="<?= htmlspecialchars($config['site']['description']) ?>">
-    <meta name="theme-color" content="#4361ee">
-    <meta property="og:title" content="<?= htmlspecialchars($config['site']['name']) ?> - <?= htmlspecialchars($config['site']['tagline']) ?>">
-    <meta property="og:description" content="<?= htmlspecialchars($config['site']['description']) ?>">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatFic.com" crossorigin>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/pages/info/home.css">
-    <title><?= htmlspecialchars($config['site']['name']) ?> - <?= htmlspecialchars($config['site']['tagline']) ?></title>
-</head>
-<body>
-    
-    <main class="main" role="main">
+<div class="home-content">
         <section class="hero" aria-labelledby="hero-title">
             <div class="hero__carousel">
-                <div class="hero__slide active" style="background-image: url('assets/bg/pubgBG.jpg')"></div>
-                <div class="hero__slide" style="background-image: url('assets/bg/mlBG.jpg')"></div>
+                <div class="hero__slide active" style="background-image: url('<?= $BASE_URL ?>/assets/bg/pubgBG.jpg')"></div>
+                <div class="hero__slide" style="background-image: url('<?= $BASE_URL ?>/assets/bg/mlBG.jpg')"></div>
                 <div class="hero__overlay"></div>
             </div>
             <div class="hero__content container">
@@ -180,18 +158,4 @@ $services = [
                 <?php endforeach; ?>
             </div>
         </section>
-    </main>
-
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            once: true,
-            offset: 50,
-            duration: 600,
-            easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-            delay: 0
-        });
-    </script>
-    <script src="js/pages/info/home.js" defer></script>
-</body>
-</html>
+</div>

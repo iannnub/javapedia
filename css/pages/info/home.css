@@ -671,18 +671,7 @@ img {
     }
 }
 
-/* Footer */
-.site-footer {
-    background: var(--color-surface);
-    padding: var(--space-xl) 0;
-    text-align: center;
-    border-top: 1px solid rgba(67, 97, 238, 0.1);
-}
 
-.copyright {
-    color: var(--color-text-muted);
-    font-size: var(--font-size-sm);
-}
 
 /* Responsive Design */
 @media (max-width: 768px) {

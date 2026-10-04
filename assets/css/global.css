@@ -1,0 +1,28 @@
+/* ============================================
+   GLOBAL RESET - Untuk menghilangkan gap body
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Pastikan main content flex-grow agar footer tetap di bawah */
+main,
+.main-content {
+    flex: 1;
+}

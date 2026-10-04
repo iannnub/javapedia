@@ -1,16 +1,17 @@
+<?php require_once __DIR__ . '/../../config.php'; ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Joki Rank Mobile Legends</title>
-    <link rel="icon" type="image/x-icon" href="../../assets/javapedia.png" />
+    <link rel="icon" type="image/x-icon" href="<?= $BASE_URL ?>/assets/javapedia.png" />
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/assets/css/global.css">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <link rel="stylesheet" href="../../css/components/footer.css">
-    <link rel="stylesheet" href="../../css/pages/infoorder/ml.css">
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/assets/css/footer.css">
+    <link rel="stylesheet" href="<?= $BASE_URL ?>/css/pages/infoorder/ml.css">
 </head>
 <body>
     
@@ -506,9 +507,9 @@
         </section>
     </main>
 
-    <?php include '../../components/footer.php'; ?>
+    <?php include_once __DIR__ . '/../../includes/footer.php'; ?>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="../../js/pages/infoorder/ml.js"></script>
+    <script src="<?= $BASE_URL ?>/js/pages/infoorder/ml.js"></script>
     <script>
         AOS.init({
             duration: 800,

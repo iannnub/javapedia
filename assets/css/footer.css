@@ -1,0 +1,167 @@
+/* ============================================
+   FOOTER STYLES - Javapedia (FULL-WIDTH FIX)
+   ============================================ */
+
+:root {
+    --footer-bg: #0a0b10;
+    --footer-text: #e0e0e0;
+    --footer-accent: #007bff;
+    --footer-border: #2a2c34;
+}
+
+.site-footer {
+    /* CRITICAL: No margin, full width */
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+    
+    background: linear-gradient(135deg, #0a0b10 0%, #1a1c24 100%);
+    color: #e0e0e0;
+    border-top: 2px solid #007bff;
+    position: relative;
+    z-index: 10;
+}
+
+/* Content wrapper dengan padding internal */
+.footer-content,
+.footer-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px 40px; /* Padding HANYA di dalam */
+    box-sizing: border-box;
+}
+
+/* Brand Section */
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.footer-brand h3 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin: 0;
+}
+
+.footer-brand .text-accent {
+    color: #007bff;
+}
+
+.footer-tagline {
+    color: #a0a0a0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Footer Columns */
+.footer-column h4 {
+    color: #ffffff;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-links i {
+    color: #007bff;
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.footer-links a {
+    color: #b0b0b0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #007bff;
+}
+
+/* Copyright Bar - FULL WIDTH */
+.footer-bottom {
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 20px;
+    border-top: 1px solid #2a2c34;
+    text-align: center;
+    background-color: #050609;
+    box-sizing: border-box;
+}
+
+.footer-bottom p {
+    color: #808080;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 992px) {
+    .footer-content,
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        padding: 40px 20px 30px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+    .site-footer {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .footer-content,
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+        padding: 30px 15px 20px;
+    }
+
+    .footer-brand {
+        align-items: center;
+    }
+
+    .footer-links li {
+        justify-content: center;
+    }
+
+    .footer-column h4 {
+        font-size: 1rem;
+    }
+    
+    .footer-bottom {
+        padding: 15px;
+    }
+}
